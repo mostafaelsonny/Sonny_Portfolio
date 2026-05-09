@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #72a1de;
+}
+
+@layer utilities {
+  .gradient {
+    background: linear-gradient(to right, #00aaa7, #7e42a7, #6600c5, #6070fd, #2a46ff, #0099ff, #008ead);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 2.5s linear infinite;
+  }
+
+  .glass-header {
+    background-color: rgba(255, 255, 255, 0.121);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px #72a1dea2;
+  }
+
+  .glass-nav {
+    background-color: rgba(0, 0, 69, 0.326);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px #72a1de63;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: lightgray;
+  background-color: #030816; /* Base dark color approximated from overlay */
+}
+
+/* Base custom animations */
+@keyframes animate-gradient {
+  to { background-position: 200%; }
+}
+
+@keyframes scroll-down-anim {
+  0% { top: 15%; opacity: 0; }
+  15% { opacity: 1; }
+  55% { opacity: 1; top: 45%; }
+  100% { top: 80%; opacity: 0; }
+}
+
+/* Scroll timeline animations */
+.autoBlur, .autoDisplay, .fadein-left {
+  view-timeline-name: --section-reveal;
+  view-timeline-axis: block;
+  animation: linear reveal-sticky-anim both;
+  animation-timeline: --section-reveal;
+  animation-range: entry 5% exit 90%;
+}
+
+@keyframes reveal-sticky-anim {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(10px);
+  }
+  20%, 85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+    filter: blur(5px);
+  }
+}
+
+/* Mobile specific animation range override */
+@media (max-width: 768px) {
+  .autoBlur, .autoDisplay, .fadein-left {
+    animation-range: entry 0% exit 95%;
+  }
+
+  @keyframes reveal-sticky-anim {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      filter: blur(8px);
+    }
+    20%, 90% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+}
+
+/* Other animations */
+@keyframes hover-animation {
+  0% {
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    transform: translate(100%, 50%) rotate(30deg);
+  }
+  100% {
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    transform: translateX(80%, 80%) rotate(20deg);
+  }
+}
+
+@keyframes autoRun {
+  from { left: 100%; }
+  to { left: calc(var(--width) * -1); }
+}
+
+@keyframes openSideBarAnimation {
+  to {
+    width: 80%;
+    opacity: 1;
+    bottom: 0;
+    border-radius: 0;
+  }
+}
+
+@keyframes closeSideBarAnimation {
+  from {
+    width: 80%;
+    opacity: 1;
+    bottom: 0;
+    border-radius: 0;
+  }
+  to {
+    width: 0;
+    opacity: 0;
+    bottom: 70%;
+    border-bottom-left-radius: 50%;
+  }
+}
