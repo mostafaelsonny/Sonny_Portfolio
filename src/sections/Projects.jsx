@@ -45,7 +45,8 @@ export default function Projects() {
   ];
 
   return (
-<section id="projects" className="flex flex-col items-center relative w-[90%] h-[450vh] gap-[13%] max-[700px]:gap-[150px] max-[700px]:h-auto mt-[200px] mb-[700px] max-[1200px]:mb-[200px] max-[1200px]:scale-[0.8] max-[700px]:scale-100 max-[700px]:mb-[100px] max-[480px]:mb-[100px] mx-auto">      <motion.h1 
+<section id="projects" className="flex flex-col items-center relative w-[90%] h-[400vh] max-[1200px]:h-[350vh] max-[700px]:h-auto gap-[13%] max-[700px]:gap-[150px] mt-[200px] mb-[1700px] max-[1200px]:mb-[200px] max-[1200px]:scale-[0.8] max-[700px]:scale-100 max-[700px]:mb-[100px] max-[480px]:mb-[100px] mx-auto">
+    <motion.h1 
         ref={titleRef}
         variants={revealVariants.autoDisplay}
         initial="hidden"
